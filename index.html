@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All PDF Tools | iLikePDF</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --secondary: #3f37c9;
+            --accent: #f72585;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --success: #4cc9f0;
+            --warning: #f8961e;
+            --danger: #ef233c;
+            --gray: #6c757d;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 28px;
+            color: var(--primary);
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-btn {
+            background-color: var(--light);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+        }
+
+        .back-btn:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .tools-hero {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(248, 37, 133, 0.1));
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .tools-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tools-hero p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Tools Grid */
+        .all-tools {
+            padding: 60px 0;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            margin: 50px 0 30px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .category-title i {
+            margin-right: 15px;
+            color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .tool-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(67, 97, 238, 0.15);
+        }
+
+        .tool-card:hover .tool-icon {
+            color: var(--white);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+
+        .tool-card:hover .tool-info h3 {
+            color: var(--primary);
+        }
+
+        .tool-icon {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 45px;
+            transition: all 0.3s ease;
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+
+        .tool-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .tool-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+
+        .tool-info p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 40px 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tools-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .category-title {
+                font-size: 1.5rem;
+                margin: 40px 0 25px;
+            }
+            
+            .tools-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .tools-hero {
+                padding: 40px 0;
+            }
+            
+            .tools-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .all-tools {
+                padding: 40px 0;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">
+                    <i class="fas fa-file-pdf"></i>
+                </span>
+                <span class="logo-text">iLikePDF</span>
+            </a>
+            
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="tools-hero">
+        <div class="container">
+            <h1>All PDF Tools</h1>
+            <p>Discover our complete collection of powerful PDF tools. Everything you need to work with PDF files in one place.</p>
+        </div>
+    </section>
+
+    <!-- All Tools Section -->
+    <section class="all-tools">
+        <div class="container">
+            <!-- Compress Tools -->
+            <h2 class="category-title">
+                <i class="fas fa-compress-alt"></i> Compress PDF
+            </h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Compress PDF</h3>
+                        <p>Reduce PDF file size while preserving quality</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Merge & Split Tools -->
+            <h2 class="category-title">
+                <i class="fas fa-object-group"></i> Merge & Split PDF
+            </h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-object-group"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Merge PDF</h3>
+                        <p>Combine multiple PDFs into one document</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Split PDF</h3>
+                        <p>Extract pages or split into multiple files</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-copy"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Extract Pages</h3>
+                        <p>Select specific pages to create new PDF</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-reorder"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Reorder Pages</h3>
+                        <p>Rearrange PDF pages in any order</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Convert PDF Tools -->
+            <h2 class="category-title">
+                <i class="fas fa-exchange-alt"></i> Convert PDF
+            </h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-word"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>PDF to Word</h3>
+                        <p>Convert PDF to editable DOCX format</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-excel"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>PDF to Excel</h3>
+                        <p>Extract tables to editable XLSX format</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-powerpoint"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>PDF to PPT</h3>
+                        <p>Convert to PowerPoint presentation</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>PDF to JPG</h3>
+                        <p>Convert each page to JPG images</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>PDF to TXT</h3>
+                        <p>Extract text content from PDF</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-code"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>PDF to HTML</h3>
+                        <p>Convert PDF to web page format</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Word to PDF</h3>
+                        <p>Convert DOC/DOCX to PDF</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Excel to PDF</h3>
+                        <p>Convert XLS/XLSX to PDF</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>PPT to PDF</h3>
+                        <p>Convert PowerPoint to PDF</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>JPG to PDF</h3>
+                        <p>Convert images to PDF document</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>TXT to PDF</h3>
+                        <p>Convert text files to PDF</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>HTML to PDF</h3>
+                        <p>Convert web pages to PDF</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit PDF Tools -->
+            <h2 class="category-title">
+                <i class="fas fa-edit"></i> Edit PDF
+            </h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Protect PDF</h3>
+                        <p>Add passwords and permissions</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-unlock"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Unlock PDF</h3>
+                        <p>Remove password protection</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>OCR PDF</h3>
+                        <p>Extract text from scanned PDFs</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-pencil-alt"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Edit PDF</h3>
+                        <p>Add text, images and shapes</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-signature"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Sign PDF</h3>
+                        <p>Add digital signatures</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-rotate-left"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Rotate PDF</h3>
+                        <p>Rotate pages in document</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Repair PDF</h3>
+                        <p>Fix corrupted PDF files</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-ruler-combined"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Page Numbers</h3>
+                        <p>Add page numbers to PDF</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Watermark</h3>
+                        <p>Add text or image watermarks</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Flatten PDF</h3>
+                        <p>Make PDF uneditable</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Tools -->
+            <h2 class="category-title">
+                <i class="fas fa-file-archive"></i> Other Tools
+            </h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-archive"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>PDF/A Converter</h3>
+                        <p>Convert to archival PDF format</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-medical"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Scan to PDF</h3>
+                        <p>Create PDF from scanner</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-download"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Webpage to PDF</h3>
+                        <p>Convert URLs to PDF</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-import"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Combine Files</h3>
+                        <p>Merge different file types into PDF</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-export"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>PDF Package</h3>
+                        <p>Create PDF portfolios</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-search"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3>PDF Metadata</h3>
+                        <p>Edit document information</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>iLikePDF</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Products</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Desktop Version</a></li>
+                        <li><a href="#">Mobile App</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Plugins</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Templates</a></li>
+                        <li><a href="#">Community</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">GDPR</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 iLikePDF. All rights reserved. Made with <i class="fas fa-heart"></i> for PDF lovers.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
